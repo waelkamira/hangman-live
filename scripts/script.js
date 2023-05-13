@@ -8,7 +8,6 @@ let playAgain = document.querySelector('.play--again');
 let imgs = document.querySelectorAll('.img');
 let photos = document.querySelector('.photos');
 
-
 fetch("https://random-word-api.herokuapp.com/word?number=1")
   .then(response => response.json())
   .then(words => {
@@ -34,7 +33,6 @@ fetch("https://random-word-api.herokuapp.com/word?number=1")
         }
     }
         myArrays()
-
 
         // عمل لوب على الازرار كلها
         for(let le = 0; le < allButtons.length; le++) { 
@@ -73,67 +71,68 @@ fetch("https://random-word-api.herokuapp.com/word?number=1")
 
                             for(let le = 0; le < allButtons.length; le++) {
                                 allButtons[le].classList.add('display');
+                                allButtons[le].classList.add('clicked');
                             } 
                         }
 
                     } else {     // اذا كانت الكلمة العشوائية تحتوي على هذا الحرف
 
-                        if(randomWordLetter.length > 1){
+                        if(randomWordLetter.length > 1){ // اذا وجد في الكلمة نفس الحرف مكرر
 
                             for(let i = 0; i < spaceWord.length; i++){
                                 
-                                if(randomWordLetter[0] === myWord[i]) { // 'wood
+                                if(randomWordLetter[0] === myWord[i]) {
                                     
                                     space[i] = randomWordLetter[0];
                                     spaceShow.textContent = space;
                                     
-                                    console.log(randomArray);
-                                    console.log(space);
-
-                                    if(space == randomArray && shots !== 0) {
-                                        won.classList.remove('hidden');
-                                    }
                                 }
+                            } 
+                            
+                            // when the user won
+                            let myString = '';
+                            for (let i = 0; i < space.length; i++){
+                                myString = myString + space[i]
+                                
+                                if(myString === randomWord && shots !== 0) {
+                                    showShots.textContent = 'Congratulation You Won';
+
+                                    for(let le = 0; le < allButtons.length; le++) {
+                                        allButtons[le].classList.add('display');
+                                        allButtons[le].classList.add('clicked');
+                                        
+                                    }
+                                } 
                             }
 
-                        } else {
+                        } else { // اذا وجد الحؤف في الكلمة غير مكرر
                             
                             space[randomWord.indexOf(randomWordLetter)] = randomWordLetter[0];
                             spaceShow.textContent = space;
                             
-                            console.log(randomArray);
-                            console.log(space);
+                            // when the user won
+                            let myString = '';
+                            for (let i = 0; i < space.length; i++){
+                                myString = myString + space[i]
+                                
+                                if(myString === randomWord && shots !== 0) {
+                                    showShots.textContent = 'Congratulation You Won';
 
-                            if(space == randomArray && shots !== 0) {
-                                won.classList.remove('hidden');
-                            }
+                                    for(let le = 0; le < allButtons.length; le++) {
+                                        allButtons[le].classList.add('display');
+                                        allButtons[le].classList.add('clicked');
+                                    }
+                                } 
+                            } 
                         }
-                        
                     }
             })
         }
 
         playAgain.addEventListener('click', function (){
-            
-            shots = 10;
-            showShots.textContent = `you have ${shots} shots`;
-
-            space = [];
-            myArrays()
-            spaceShow.textContent = space;
-
-            // we need to remove display class from all buttons
-            for(let le = 0; le < allButtons.length; le++) {
-                allButtons[le].classList.remove('display');
-                allButtons[le].classList.remove('clicked');
-            }
-
-            // we need to add hidden class to all photos
-            for(let i = 0; i < imgs.length; i++) {
-                imgs[i].classList.add('hidden');
-            }
-            
             location.reload()
         })
     })
     .catch(error => console.error(error));
+
+
