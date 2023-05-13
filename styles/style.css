@@ -1,0 +1,74 @@
+body {
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 50px;
+    margin: 0%;
+    padding: 0%;
+}
+
+
+h1 {
+    font-size: 45px;
+}
+
+.all--buttons {
+    margin-top: 10px;
+    margin-left: 300px;
+    margin-right: 300px;
+}
+
+.button {
+    width: 100px;
+    height: 50px;
+    font-size: 30px;
+    background-color: orange;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+
+.play--again {
+    width: 200px;
+    height: 75px;
+    font-size: 30px;
+    background-color: rgb(255, 68, 0);
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.photos {
+    position: relative; 
+    
+}
+
+.img {
+    position: absolute;
+    object-fit: cover;
+    width: 515px;
+    height: 570px;
+    margin-left: 400px;
+    margin-top: 170px;
+    /* border: 2px solid rgb(255, 71, 47); */
+}
+
+.woman {
+    margin-right: 800px;
+}
+
+.hidden {
+    display: none;
+}
+
+.display {
+    pointer-events: none;
+}
+
+.clicked {
+    background-color: rgb(128, 127, 127);
+}
+
+
+.background {
+    height: 300px;
+    width: 1890px;
+}
